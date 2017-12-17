@@ -1,0 +1,29 @@
+- name: Copy pacman configuration file
+  template:
+    src: pacman.conf.j2
+    dest: /etc/pacman.conf
+
+- name: Copy pacman configuration file
+  copy:
+    src: mirrorlist
+    dest: /etc/pacman.d/mirrorlist
+
+- name: Ensure that ~/.gnupg directory exists
+  file:
+    path: '/root/.gnupg'
+    state: 'directory'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
+
+- name: Enable colours
+  lineinfile:
+    dest: /etc/pacman.conf
+    state: "present"
+    regexp: "^Color"
+    insertafter: "^#Color"
+    line: "Color"
+
+- name: Refresh pacman mirrors
+  pacman:
+    update_cache: yes

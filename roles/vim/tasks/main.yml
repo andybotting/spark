@@ -1,0 +1,10 @@
+---
+- name: Set up vi to vim syntax
+  aur:
+    name: vi-vim-symlink
+    user: "{{ user.name }}"
+
+- name: System wide vimrc
+  copy:
+    src: vimrc
+    dest: /etc/vimrc

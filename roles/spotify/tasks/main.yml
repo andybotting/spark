@@ -1,0 +1,11 @@
+---
+- name: Install spotify
+  aur:
+    name: spotify
+    user: "{{ user.name }}"
+
+- name: Set up device scaling for high-dpi
+  copy:
+    src: spotify.desktop
+    dest: "{{ user.home }}/.local/share/applications/spotify.desktop"
+  when: high_dpi is defined and high_dpi == True

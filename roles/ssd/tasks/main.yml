@@ -1,0 +1,13 @@
+---
+- name: Install hdparm and util-linux
+  pacman:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - util-linux
+
+- name: Enable and start weekly filesystem TRIM timer
+  service:
+    name: fstrim.timer
+    enabled: yes
+    state: started

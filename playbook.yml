@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: yes
+  roles:
+    - role: base
+      tags: base
+    - role: laptop
+      tags: laptop
+    - role: macbook
+      tags: macbook
+      when: "'MacBook' in ansible_product_name"
+    - role: openstack-clients
+      tags: openstack-clients
+    - role: openstack-creds
+      tags: openstack-creds
+    - role: spotify
+      tags: spotify
+    - role: ssh
+      tags: ssh
+    - role: vim
+      tags: vim
+

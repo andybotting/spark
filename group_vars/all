@@ -1,0 +1,32 @@
+user:
+  name: andy
+  uid: 1000
+  group: users
+  shell: /usr/bin/bash
+  home: /home/andy
+
+pacman_enable_multilib: False
+pacman_ignore_pkg: []
+
+aur:
+  dir: aur
+  packages: []
+
+editors:
+  - vim
+
+video_drivers:
+  - libva-intel-driver
+
+base_packages:
+  - base-devel
+  - git
+  - rsync
+  - coreutils
+  - moreutils
+  - jq
+  - screen
+  - mosh
+
+journal:
+  max_size: 500M

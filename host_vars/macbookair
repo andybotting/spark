@@ -1,0 +1,4 @@
+pacman_ignore_pkg:
+  - xf86-input-mtrack
+
+# syntax=yaml

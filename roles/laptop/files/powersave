@@ -1,0 +1,39 @@
+#!/bin/sh
+
+on_ac() {
+    echo 1 > /proc/sys/kernel/nmi_watchdog
+    echo 500 > /proc/sys/vm/dirty_writeback_centisecs
+    echo 0 > /proc/sys/vm/laptop_mode
+    echo 0 > /sys/module/snd_hda_intel/parameters/power_save
+}
+
+on_battery() {
+    echo 0 > /proc/sys/kernel/nmi_watchdog
+    echo 1500 > /proc/sys/vm/dirty_writeback_centisecs
+    echo 5 > /proc/sys/vm/laptop_mode
+    echo 1 > /sys/module/snd_hda_intel/parameters/power_save
+}
+
+guess() {
+    if cat /sys/class/power_supply/ADP1/online | grep 0 > /dev/null 2>&1
+    then
+        on_battery
+    else
+        on_ac
+    fi
+}
+
+case "$1" in
+    true)
+        on_battery
+        ;;
+    false)
+        on_ac
+        ;;
+    *)
+        guess
+        ;;
+esac
+exit 0
+
+# vim: sts=4 sw=4 et

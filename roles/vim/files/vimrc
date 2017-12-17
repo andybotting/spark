@@ -1,0 +1,46 @@
+" This line should not be removed as it ensures that various options are
+" properly set to work with the Vim-related packages.
+runtime! archlinux.vim
+
+syntax on
+filetype plugin indent on
+
+set background=dark             " Use dark background
+
+set showcmd                     " Show typed command prefixes while waiting for operator
+set nonu
+
+set expandtab                   " Use soft tabs
+set tabstop=4                   " Tab settings
+set autoindent
+set smarttab                    " Use shiftwidth to tab at line beginning
+set shiftwidth=4                " Width of autoindent
+set paste
+set ruler                       " Ruler
+set backspace=indent,eol,start  " Let backspace work over anything.
+
+set showmatch                   " Show matching brackets
+set hidden                      " Allow hidden, unsaved buffers
+set splitright                  " Add new windows towards the right
+set splitbelow                  " ... and bottom
+set wildmode=list:longest       " Bash-like tab completion
+set scrolloff=3                 " Scroll when the cursor is 3 lines from edge
+
+set laststatus=2                " Always show statusline
+
+set incsearch                   " Incremental search
+set history=1024                " History size
+
+set hls                         " search with highlights by default
+
+set modeline
+set modelines=5
+
+set mouse-=a                    " disable visual mode with mouse
+
+" Always use 4 spaces for python (should be enabled already anyway)
+autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
+
+" Puppet recommended
+autocmd BufRead,BufNewFile *.pp set filetype=puppet
+autocmd BufRead,BufNewFile *.pp setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab textwidth=160 smarttab

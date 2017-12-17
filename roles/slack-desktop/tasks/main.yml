@@ -1,0 +1,10 @@
+---
+- name: Install slack-desktop
+  aur:
+    name: slack-desktop
+    user: "{{ user.name }}"
+
+- name: Set up application entry for GPU rendering
+  copy:
+    src: slack-desktop.desktop
+    dest: "{{ user.home }}/.local/share/applications/slack-desktop.desktop"

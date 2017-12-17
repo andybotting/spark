@@ -1,0 +1,11 @@
+---
+- name: Copy mtrack-git configuration file
+  copy:
+    src: 10-mtrack.conf
+    dest: /etc/X11/xorg.conf.d/10-mtrack.conf
+  when: "'MacBookAir4,2' in ansible_product_name"
+
+- name: Install xf86-input-mtrack
+  aur: 
+    name: xf86-input-mtrack
+    user: "{{ user.name }}"

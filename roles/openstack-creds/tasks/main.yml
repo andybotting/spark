@@ -1,0 +1,13 @@
+---
+- name: Clone openstack-bash-creds-helper
+  git:
+    #repo: git@github.com:andybotting/openstack-bash-creds-helper.git
+    repo: https://github.com/andybotting/openstack-bash-creds-helper.git
+    dest: "{{ user.home }}/usr/projects/openstack-bash-creds-helper"
+    accept_hostkey: yes
+
+- name: Create symlink for openstack-bash-creds-helper
+  file:
+    src: "{{ user.home }}/usr/projects/openstack-bash-creds-helper/openstack_creds"
+    dest: "{{ user.home }}/.local/bin/openstack_creds"
+    state: link
