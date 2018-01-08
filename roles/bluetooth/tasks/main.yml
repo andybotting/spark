@@ -1,0 +1,24 @@
+---
+- name: Install bluetooth packages
+  pacman:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - bluez-utils
+    - pulseaudio-bluetooth
+
+- name: Enable and start the bluetooth service
+  service:
+    name: bluetooth.service
+    enabled: yes
+    state: started
+
+- name: Fix GDM owning Pulseaudio Bluetooth for ADP
+  copy:
+    src: gdm-default.pa
+    dest: /var/lib/gdm/.config/pulse/default.pa
+
+- name: Set up headphones for user
+  copy:
+    src: user-default.pa
+    dest: "{{ user.home }}/.config/pulse/default.pa"

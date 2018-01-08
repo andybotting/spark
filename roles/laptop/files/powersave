@@ -14,9 +14,17 @@ on_battery() {
     echo 1 > /sys/module/snd_hda_intel/parameters/power_save
 }
 
+ac_status() {
+    if [ -d /sys/class/power_supply/AC ]; then
+        echo "/sys/class/power_supply/AC"
+    elif [ -d /sys/class/power_supply/ADP1 ]; then
+        echo "/sys/class/power_supply/ADP1"
+    fi
+}
+
 guess() {
-    if cat /sys/class/power_supply/ADP1/online | grep 0 > /dev/null 2>&1
-    then
+    AC_STATUS=$(ac_status)
+    if cat ${AC_STATUS}/online | grep 0 > /dev/null 2>&1; then
         on_battery
     else
         on_ac

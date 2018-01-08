@@ -1,0 +1,8 @@
+---
+- name: restart NetworkManager
+  service:
+    name: NetworkManager.service
+    state: restarted
+
+- name: reload udev
+  command: "udevadm control --reload-rules"

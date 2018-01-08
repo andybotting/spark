@@ -1,35 +1,37 @@
 ---
 openstack_client_packages:
-  - python-ceilometerclient
   - python-cinderclient
-  - python-designateclient
   - python-glanceclient
+  - python-keystoneclient
+  - python-novaclient
+  - python-openstackclient
+  - python-os-client-config
+  - python-swiftclient
+  - python2-cinderclient
+  - python2-glanceclient
+  - python2-keystoneclient
+  - python2-novaclient
+  - python2-openstackclient
+  - python2-os-client-config
+  - python2-swiftclient
+
+openstack_client_packages_aur:
+  - python-ceilometerclient
+  - python-designateclient
   - python-heatclient
   - python-ironicclient
-  - python-keystoneclient
   - python-magnumclient
   - python-manilaclient
   - python-mistralclient
   - python-muranoclient
   - python-neutronclient
-  - python-novaclient
-  - python-openstackclient
-  - python-os-client-config
   - python-saharaclient
-  - python-swiftclient
   - python-troveclient
   - python2-ceilometerclient
-  - python2-cinderclient
   - python2-designateclient
-  - python2-glanceclient
   - python2-heatclient
   - python2-ironicclient
-  - python2-keystoneclient
   - python2-magnumclient
   - python2-mistralclient
   - python2-neutronclient
-  - python2-novaclient
-  - python2-openstackclient
-  - python2-os-client-config
-  - python2-swiftclient
   - python2-troveclient

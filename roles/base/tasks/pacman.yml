@@ -3,9 +3,9 @@
     src: pacman.conf.j2
     dest: /etc/pacman.conf
 
-- name: Copy pacman configuration file
-  copy:
-    src: mirrorlist
+- name: Push mirrorlist config
+  template:
+    src: mirrorlist.j2
     dest: /etc/pacman.d/mirrorlist
 
 - name: Ensure that ~/.gnupg directory exists
@@ -27,3 +27,47 @@
 - name: Refresh pacman mirrors
   pacman:
     update_cache: yes
+
+- name: Install universal base packages
+  pacman:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ base_packages }}"
+
+- name: Install cower
+  aur:
+    name: cower
+    user: "{{ user.name }}"
+    skip_pgp: yes
+
+- name: Install pacaur
+  aur:
+    name: pacaur
+    user: "{{ user.name }}"
+
+- name: Install AUR base packages
+  aur:
+    name: "{{ item }}"
+    user: "{{ user.name }}"
+  with_items: "{{ packages_aur }}"
+
+- name: Push pacman cache cleanup service
+  copy:
+    src: paccache.service
+    dest: /etc/systemd/system/paccache.service
+  notify:
+    - reload systemd config
+
+- name: Push pacman cache cleanup timer
+  copy: 
+    src: paccache.timer
+    dest: /etc/systemd/system/paccache.timer
+  notify:
+    - reload systemd config
+    - restart paccache
+
+- name: Enable and start pacman cache cleanup timer
+  service:
+    name: paccache.timer
+    enabled: yes
+    state: started

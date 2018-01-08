@@ -1,6 +1,0 @@
----
-- name: Install OpenStack clients
-  aur:
-    name: "{{ item }}"
-    user: "{{ user.name }}"
-  with_items: "{{ openstack_client_packages }}"

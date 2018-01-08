@@ -1,3 +1,8 @@
 [Socket]
 ListenStream=
-ListenStream={{ ssh.port }}
+{% if ssh_port is defined and ssh_port != '22' }
+Port {{ ssh_port }}
+ListenStream={{ ssh_port }}
+{% else %}
+ListenStream=22
+{% endif %}

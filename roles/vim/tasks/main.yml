@@ -1,4 +1,14 @@
 ---
+- name: Remove vi
+  pacman:  
+    name: vi
+    state: absent
+
+- name: Install vim
+  pacman:
+    name: vim
+    state: installed
+
 - name: Set up vi to vim syntax
   aur:
     name: vi-vim-symlink

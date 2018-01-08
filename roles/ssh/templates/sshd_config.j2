@@ -1,10 +1,10 @@
 # {{ ansible_managed }}
 
-{% if ssh.port is defined and ssh.port != '22' }
-Port {{ ssh.port }}
+{% if ssh_port is defined and ssh_port != '22' %}
+Port {{ ssh_port }}
 {% endif %}
 Protocol 2
-PermitRootLogin no
+PermitRootLogin without-password
 PasswordAuthentication no
 X11Forwarding no
 PrintMotd no

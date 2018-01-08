@@ -5,15 +5,27 @@
     - role: base
       tags: base
 
+    - role: packages
+      tags: packages
+
     - role: laptop
       tags: laptop
+
+    - role: gnome
+      tags: gnome
+
+    - role: tilix
+      tags: tilix
+
+    - role: networkmanager
+      tags: networkmanager
 
     - role: macbook
       tags: macbook
       when: "'MacBook' in ansible_product_name"
 
-    - role: openstack-clients
-      tags: openstack-clients
+#    - role: openstackclients
+#      tags: openstackclients
 
     - role: ssh
       tags: ssh
@@ -24,15 +36,18 @@
     - role: user
       tags: user
 
-    - role: aussie-addons
-      tags: aussie-addons
+#    - role: aussieaddons
+#      tags: aussieaddons
       become_user: "{{ user.name }}"
 
-    - role: openstack-creds
-      tags: openstack-creds
+#    - role: openstackcreds
+#      tags: openstackcreds
       become_user: "{{ user.name }}"
 
-    - role: spotify
-      tags: spotify
-      become_user: "{{ user.name }}"
+    - role: bluetooth
+      tags: bluetooth
+
+#    - role: spotify
+#      tags: spotify
+#      become_user: "{{ user.name }}"
 
