@@ -14,6 +14,9 @@
     - role: gnome
       tags: gnome
 
+    - role: sound
+      tags: sound
+
     - role: tilix
       tags: tilix
 
@@ -38,16 +41,16 @@
 
 #    - role: aussieaddons
 #      tags: aussieaddons
-      become_user: "{{ user.name }}"
+#      become_user: "{{ user.name }}"
 
 #    - role: openstackcreds
 #      tags: openstackcreds
-      become_user: "{{ user.name }}"
+#      become_user: "{{ user.name }}"
 
     - role: bluetooth
       tags: bluetooth
 
-#    - role: spotify
-#      tags: spotify
-#      become_user: "{{ user.name }}"
+    - role: spotify
+      tags: spotify
+      become_user: "{{ user.name }}"
 
