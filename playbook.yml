@@ -50,6 +50,9 @@
     - role: bluetooth
       tags: bluetooth
 
+    - role: cups
+      tags: cups
+
     - role: spotify
       tags: spotify
       become_user: "{{ user.name }}"
