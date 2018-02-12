@@ -11,6 +11,9 @@
     - role: laptop
       tags: laptop
 
+    - role: display
+      tags: display
+
     - role: gnome
       tags: gnome
 
