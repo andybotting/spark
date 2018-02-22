@@ -42,9 +42,9 @@
     - role: user
       tags: user
 
-#    - role: aussieaddons
-#      tags: aussieaddons
-#      become_user: "{{ user.name }}"
+    - role: aussieaddons
+      tags: aussieaddons
+      become_user: "{{ user.name }}"
 
 #    - role: openstackcreds
 #      tags: openstackcreds

@@ -4,17 +4,34 @@
     name: vi
     state: absent
 
-- name: Install vim
+- name: Install vim and plugins
   pacman:
-    name: vim
+    name: "{{ item }}"
     state: installed
+  with_items:
+    - vim-airline
+    - vim-syntastic
+    - powerline-fonts
 
-- name: Set up vi to vim syntax
-  aur:
-    name: vi-vim-symlink
-    user: "{{ user.name }}"
+- name: Make vim symlinks
+  file:
+    src: vim
+    dest: "/usr/bin/{{ item }}"
+    state: link
+  with_items:
+    - edit
+    - ex
+    - vedit
+    - vi
+    - view
 
 - name: System wide vimrc
   copy:
     src: vimrc
     dest: /etc/vimrc
+
+- name: User vimrc
+  copy:
+    src: user-vimrc
+    dest: "{{ user.home }}/.vimrc"
+  become: "{{ user.name }}"
