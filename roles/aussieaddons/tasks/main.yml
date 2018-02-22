@@ -1,14 +1,14 @@
 ---
 - name: Clone all projects
   git:
-    repo: "git@github.com:xbmc-catchuptv-au/{{ item }}.git"
-    dest: "{{ user.home }}/usr/projects/aussie-addons/{{ item }}"
+    repo: "git@github.com:aussieaddons/{{ item }}.git"
+    dest: "{{ user.home }}/usr/projects/aussieaddons/{{ item }}"
     update: no
-  with_items: "{{ aussie_addons_repos }}"
+  with_items: "{{ (aussie_addons_addons + aussie_addons_extra) | unique }}"
 
 - name: Set up Kodi symlinks
   file:
-    src: "{{ user.home }}/usr/projects/aussie-addons/{{ item }}"
+    src: "{{ user.home }}/usr/projects/aussieaddons/{{ item }}"
     dest: "{{ user.home }}/.kodi/addons/{{ item }}"
     state: link
-  with_items: "{{ aussie_addons_repos }}"
+  with_items: "{{ aussie_addons_addons }}"

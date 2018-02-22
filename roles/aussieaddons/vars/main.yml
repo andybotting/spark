@@ -1,5 +1,5 @@
 ---
-aussie_addons_repos:
+aussie_addons_addons:
   - plugin.video.abc_iview
   - plugin.video.afl-video
   - plugin.video.plus7
@@ -7,21 +7,14 @@ aussie_addons_repos:
   - plugin.video.catchuptv.au.nine
   - plugin.video.catchuptv.au.ten
   - plugin.video.nrl-live
+  - plugin.video.olympicson7
+  - plugin.video.cricketaustralia
   - script.module.aussieaddonscommon
   - script.module.drmhelper
-  - repository.aussieaddons-devel
   - repository.aussieaddons
+  - repository.aussieaddons-devel
+
+aussie_addons_extra:
   - repo
   - repo-devel
   - web
-
-aussie_addons_kodi:
-  - plugin.video.abc_iview
-  - plugin.video.afl-video
-  - plugin.video.plus7
-  - plugin.video.sbs
-  - plugin.video.catchuptv.au.nine
-  - plugin.video.catchuptv.au.ten
-  - plugin.video.nrl-live
-  - script.module.aussieaddonscommon
-  - script.module.drmhelper
