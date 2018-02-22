@@ -3,6 +3,9 @@
   pacman:  
     name: vi
     state: absent
+  with_items:
+    - vi
+    - vi-vim-symlink
 
 - name: Install vim and plugins
   pacman:
