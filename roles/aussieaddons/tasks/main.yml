@@ -6,7 +6,20 @@
     update: no
   with_items: "{{ (aussie_addons_addons + aussie_addons_extra) | unique }}"
 
-- name: Clean up any old Kodi symlinks
+#- name: Clean up any old Kodi symlinks
+#- stat:
+#    path: "{{ user.home }}/.kodi/addons/{{ item }}"
+#  with_items: "{{ aussie_addons_addons }}"
+#  register: links
+#
+#- name: Remove old directories
+#  file:
+#    dest: "{{ user.home }}/.kodi/addons/{{ item }}"
+#    state: absent
+#  when: item.stat.islnk == false
+#  with_items: links.results
+
+- name: Clean up Kodi addon dirs
   file:
     path: "{{ user.home }}/.kodi/addons/{{ item }}"
     state: absent
@@ -17,4 +30,22 @@
     src: "{{ user.home }}/usr/projects/aussieaddons/{{ item }}"
     dest: "{{ user.home }}/.kodi/addons/{{ item }}"
     state: link
+  with_items: "{{ aussie_addons_addons }}"
+
+- name: Apply Kodi guisettings
+  xml:
+    path: "{{ user.home }}/.kodi/userdata/guisettings.xml"
+    xpath: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items: "{{ kodi_guisettings }}"
+
+- name: Remove default tag from Kodi guisettings
+  xml:
+    path: "{{ user.home }}/.kodi/userdata/guisettings.xml"
+    xpath: "{{ item.key }}/@default"
+    state: absent
+  with_items: "{{ kodi_guisettings }}"
+
+- name: Enable add-ons
+  command: "sqlite3 {{ user.home }}/.kodi/userdata/Database/Addons27.db 'update installed set enabled=1 where addonID = \"{{ item }}\";'"
   with_items: "{{ aussie_addons_addons }}"

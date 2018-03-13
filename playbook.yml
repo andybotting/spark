@@ -20,6 +20,9 @@
     - role: sound
       tags: sound
 
+    - role: android
+      tags: android
+
     - role: tilix
       tags: tilix
 
