@@ -6,6 +6,12 @@
     update: no
   with_items: "{{ (aussie_addons_addons + aussie_addons_extra) | unique }}"
 
+- name: Clean up any old Kodi symlinks
+  file:
+    path: "{{ user.home }}/.kodi/addons/{{ item }}"
+    state: absent
+  with_items: "{{ aussie_addons_addons }}"
+
 - name: Set up Kodi symlinks
   file:
     src: "{{ user.home }}/usr/projects/aussieaddons/{{ item }}"
