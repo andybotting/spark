@@ -1,20 +1,15 @@
 ---
-- name: Remove old packages
+- name: Install Tilix
   pacman:
     name: "{{ item }}"
-    state: absent
   with_items:
-    - gnome-terminal
-    - vte3
-    - vte-common
-
-- name: Install Tilix
-  aur:
-    name: "{{ item }}"
-    user: "{{ user.name }}"
-  with_items:
-    - vte-notification-common
-    - vte3-notification
-    - gnome-terminal-fedora
     - gtkd
     - tilix
+
+#- name: Install VTE with notification patches
+#  aur:
+#    name: "{{ item }}"
+#    user: "{{ user.name }}"
+#  with_items:
+#    - vte-notification-common
+#    - vte3-notification
