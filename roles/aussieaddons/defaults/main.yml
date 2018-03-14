@@ -1,0 +1,7 @@
+---
+
+kodi_guisettings:
+  - key: /settings/general/addonupdates  
+    value: "2"
+  - key: /settings/addons/unknownsources
+    value: "true"

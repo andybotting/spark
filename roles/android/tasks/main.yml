@@ -1,0 +1,13 @@
+---
+- name: Android packages
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - android-udev
+
+- name: Android packages (from AUR)
+  aur:
+    name: "{{ item }}"
+    user: "{{ user.name }}"
+  with_items:
+    - android-sdk-platform-tools
