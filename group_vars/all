@@ -31,6 +31,7 @@ base_packages:
   - screen
   - mosh
   - wget
+  - pacman-contrib
 
 journal:
   max_size: 500M
