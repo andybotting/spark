@@ -3,26 +3,3 @@
   pacman:
     name: cups
     state: present
-
-- name: Install foo2zjs driver
-  aur:
-    name: foo2zjs-nightly
-    user: "{{ user.name }}"
-
-- name: Enable and start CUPS
-  service:
-    name: org.cups.cupsd.service
-    enabled: yes
-    state: started
-
-- name: Test if HP-LaserJet-Pro-P1102w is configured
-  shell: '/usr/bin/lpstat -p HP-LaserJet-Pro-P1102w'
-  register: printer_installed
-  failed_when: printer_installed.rc >= 2
-
-- name: Install HP-LaserJet-Pro-P1102w printer
-  shell: "{{ item }}"
-  with_items:
-    - /usr/sbin/lpadmin -p 'HP-LaserJet-Pro-P1102w' -v 'socket://laserjet.home:9100' -m 'HP-LaserJet_Pro_P1102w.ppd.gz' -o 'media=iso_a4_210x297mm' -E
-    - /usr/sbin/lpadmin -d 'HP-LaserJet-Pro-P1102w'
-  when: "'Invalid destination name' in printer_installed.stderr"
