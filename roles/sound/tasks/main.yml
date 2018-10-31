@@ -1,7 +1,16 @@
 ---
 - name: Install ALSA packages
   pacman:
-    name: "{{ item }}"
+    name:
+      - alsa-utils
     state: present
-  with_items:
-    - alsa-utils
+
+- name: Remove ALSA state daemon config
+  file:
+    path: /etc/alsa/state-daemon.conf
+    state: absent
+
+- name: Enable ALSA save/restore
+  service:
+    name: alsa-restore.service
+    enabled: yes
