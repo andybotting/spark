@@ -1,0 +1,28 @@
+---
+- name: Install fonts
+  pacman:
+    name:
+      - noto-fonts
+      - noto-fonts-cjk
+      - noto-fonts-emoji
+      - noto-fonts-extra
+      - ttf-croscore
+      - ttf-bitstream-vera
+      - ttf-dejavu
+      - ttf-liberation
+      - ttf-roboto
+      - ttf-ubuntu-font-family
+    state: present
+
+- name: Create font config dir
+  file:
+    path: "{{ user.home }}/.config/fontconfig"
+    state: directory 
+  become: "{{ user.name }}"
+
+- name: Set font config
+  copy:
+    src: fonts.conf
+    dest: "{{ user.home }}/.config/fontconfig"
+  become: "{{ user.name }}"
+
