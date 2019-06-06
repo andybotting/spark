@@ -1,0 +1,12 @@
+#!/bin/sh
+  
+/usr/bin/spotify {% if high_dpi is defined and high_dpi %}--force-device-scale-factor=1.5{% endif %} "$@" &
+
+for i in {1..100}; do
+  winID=$(wmctrl -l | grep Spotify | cut -d " " -f 1)
+  if [ ! -z $winID ]; then
+    xprop -f _GTK_THEME_VARIANT 8u -set _GTK_THEME_VARIANT "dark" -id $winID
+    echo $i
+    break
+  fi
+done

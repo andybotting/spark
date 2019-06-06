@@ -4,8 +4,21 @@
     name: spotify
     user: "{{ user.name }}"
 
-- name: Set up device scaling for high-dpi
+- name: Set up spotify.desktop
   copy:
     src: spotify.desktop
     dest: "{{ user.home }}/.local/share/applications/spotify.desktop"
-  when: high_dpi is defined and high_dpi == True
+
+- name: Set up spotify launch script
+  template:
+    src: spotify.j2
+    dest: "{{ user.home }}/.local/bin/spotify"
+    mode: 0755
+
+- name: Install xtools
+  pacman:
+    name:
+      - xorg-xprop
+      - wmctrl
+    state: installed
+  become: true
