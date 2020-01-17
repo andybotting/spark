@@ -1,0 +1,12 @@
+---
+- name: Install WireGuard and related packages
+  pacman:
+    name:
+      - wireguard-dkms
+      - wireguard-tools
+    state: present
+
+- name: Install WireGuard NetworkManager plugin
+  aur:
+    name: networkmanager-wireguard-git
+    user: "{{ user.name }}"
