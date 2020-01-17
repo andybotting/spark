@@ -1,3 +1,2 @@
 [workstation]
-macbookair   ansible_connection=local ansible_python_interpreter=/usr/bin/python2
-#xps13   ansible_connection=local ansible_python_interpreter=/usr/bin/python2
+xps13   ansible_connection=local ansible_python_interpreter=/usr/bin/python
