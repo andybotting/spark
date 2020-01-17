@@ -1,6 +1,9 @@
 ---
 - name: Push powersave script
-  copy: src=powersave dest=/usr/local/bin/powersave mode=0755
+  copy:
+    src: powersave
+    dest: /usr/local/bin/powersave
+    mode: 0755
 
 - name: Push udev rules
   copy:
@@ -12,9 +15,14 @@
     - 50-powersave-usb.rules
 
 - name: Push powersave service file
-  copy: src=systemd/powersave.service dest=/etc/systemd/system/powersave.service
+  copy:
+    src: systemd/powersave.service
+    dest: /etc/systemd/system/powersave.service
   notify:
     - reload systemd config
 
 - name: Enable and start powersave
-  service: name=powersave.service enabled=yes state=started
+  service:
+    name: powersave.service
+    enabled: yes
+    state: started

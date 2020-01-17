@@ -1,0 +1,13 @@
+---
+- name: Push disable-xhc-wakeup service file
+  copy:
+    src: systemd/disable-xhc-wakeup.service
+    dest: /etc/systemd/system/disable-xhc-wakeup.service
+  notify:
+    - reload systemd config
+
+- name: Enable and start disable-xhc-wakeup
+  service:
+    name: disable-xhc-wakeup.service
+    enabled: yes
+    state: started
