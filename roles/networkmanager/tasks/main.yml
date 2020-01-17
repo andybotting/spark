@@ -1,28 +1,26 @@
 ---
 - name: Install NetworkManager and related packages
   pacman:
-    name: "{{ item }}"
+    name:
+      - networkmanager
+      - modemmanager
+      - usb_modeswitch
     state: present
-  with_items:
-    - networkmanager
-    - modemmanager
-    - networkmanager-openvpn
-    - usb_modeswitch
-    - dnsmasq
 
-- name: Set dnsmasq as DNS resolver
+- name: Set systemd-resolved as DNS resolver
   ini_file:
-    path: /etc/NetworkManager/NetworkManager.conf
+    path: /etc/NetworkManager/conf.d/rc-manager.conf
     section: main
     option: dns
-    value: dnsmasq
+    value: systemd-resolved
   notify:
     - restart NetworkManager
 
-- name: Enable and start NetworkManager
+- name: Enable and start NetworkManager and systemd-resolved
   service:
     name: "{{ item }}"
     enabled: yes
   with_items:
+    - systemd-resolved.service
     - NetworkManager.service
     - ModemManager.service
